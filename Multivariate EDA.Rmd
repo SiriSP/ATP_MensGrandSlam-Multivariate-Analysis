@@ -1,0 +1,135 @@
+---
+output:
+  word_document: default
+  html_document: default
+  pdf_document: default
+---
+
+```{r}
+attach(Match)
+Match
+```
+
+```{r}
+#Australian Open trend over the years based on average set minutes 
+AustralianOpen<-subset(Match,Match$tournament=="Australian Open")
+summary(AustralianOpen)
+install.packages("data.table")
+library(data.table)
+setDT(AustralianOpen)
+AustralianOpen[is.na(avg_minutes_set),NROW(avg_minutes_set)]
+table(is.na(AustralianOpen$avg_minutes_set))
+str(AustralianOpen)
+class(AustralianOpen)
+```
+
+```{r}
+
+AustralianOpen[is.na(avg_minutes_set),avg_minutes_set:=0]
+View(AustralianOpen)
+AustralianOpen[is.na(avg_minutes_game),avg_minutes_game:=0]
+AustralianOpen[is.na(avg_seconds_point),avg_seconds_point:=0]
+AustralianOpen[is.na(match_minutes),match_minutes:=0]
+View(AustralianOpen)
+is.na(AustralianOpen)
+AustralianOpen[,'avgset_overyears':= mean(avg_minutes_set),by=year]
+ab<-unique(AustralianOpen$avgset_overyears)    
+library(ggplot2)  
+ggplot(AustralianOpen,aes(x=year,y=avgset_overyears))+geom_line()
+```
+
+```{r}
+#French Open trend over the years based on average set minutes
+FrenchOpen<-subset(Match,Match$tournament=="French Open")
+summary(FrenchOpen)
+#install.packages("data.table")
+#library(data.table)
+setDT(FrenchOpen)
+FrenchOpen[is.na(avg_minutes_set),NROW(avg_minutes_set)]
+table(is.na(FrenchOpen$avg_minutes_set))
+str(FrenchOpen)
+class(FrenchOpen)
+
+```
+
+```{r}
+FrenchOpen[is.na(avg_minutes_set),avg_minutes_set:=0]
+View(FrenchOpen)
+FrenchOpen[is.na(avg_minutes_game),avg_minutes_game:=0]
+FrenchOpen[is.na(avg_seconds_point),avg_seconds_point:=0]
+FrenchOpen[is.na(match_minutes),match_minutes:=0]
+View(FrenchOpen)
+is.na(FrenchOpen)
+FrenchOpen[,'avgset_overyears':= mean(avg_minutes_set),by=year]
+ab<-unique(FrenchOpen$avgset_overyears)    
+#library(ggplot2)  
+ggplot(FrenchOpen,aes(x=year,y=avgset_overyears))+geom_line()
+install.packages("stringr")
+library(stringr)
+str_detect(FrenchOpen,'NA')
+```
+
+```{r}
+#Wimbeldon trend over the years based on average set minutes
+WimbledonOpen<-subset(Match,Match$tournament=="Wimbledon")
+setDT(WimbledonOpen)
+summary(WimbledonOpen)
+WimbledonOpen[is.na(avg_minutes_set),NROW(avg_minutes_set)]
+table(is.na(WimbledonOpen$avg_minutes_set))
+str(WimbledonOpen)
+class(WimbledonOpen)
+#install.packages("data.table")
+#library(data.table)
+
+```
+
+```{r}
+WimbledonOpen[is.na(avg_minutes_set),avg_minutes_set:=0]
+View(WimbledonOpen)
+WimbledonOpen[is.na(avg_minutes_game),avg_minutes_game:=0]
+WimbledonOpen[is.na(avg_seconds_point),avg_seconds_point:=0]
+WimbledonOpen[is.na(match_minutes),match_minutes:=0]
+View(WimbledonOpen)
+is.na(WimbledonOpen)
+WimbledonOpen[,'avgset_overyears':= mean(avg_minutes_set),by=year]
+ab<-unique(WimbledonOpen$avgset_overyears)    
+#library(ggplot2)  
+ggplot(WimbledonOpen,aes(x=year,y=avgset_overyears))+geom_line()
+install.packages("stringr")
+#library(stringr)
+str_detect(WimbledonOpen,'NA')
+```
+
+
+```{r}
+#USOpen trend over the years based on average set minutes
+USOpen<-subset(Match,Match$tournament=="US Open")
+summary(USOpen)
+setDT(USOpen)
+USOpen[is.na(avg_minutes_set),NROW(avg_minutes_set)]
+table(is.na(USOpen$avg_minutes_set))
+str(USOpen)
+class(USOpen)
+install.packages("data.table")
+#library(data.table)
+
+```
+
+```{r}
+USOpen[is.na(avg_minutes_set),avg_minutes_set:=0]
+View(USOpen)
+USOpen[is.na(avg_minutes_game),avg_minutes_game:=0]
+USOpen[is.na(avg_seconds_point),avg_seconds_point:=0]
+USOpen[is.na(match_minutes),match_minutes:=0]
+View(USOpen)
+is.na(USOpen)
+USOpen[,'avgset_overyears':= mean(avg_minutes_set),by=year]
+ab<-unique(USOpen$avgset_overyears)    
+#library(ggplot2)  
+ggplot(USOpen,aes(x=year,y=avgset_overyears))+geom_line()
+install.packages("stringr")
+#library(stringr)
+str_detect(USOpen,'NA')
+
+```
+
